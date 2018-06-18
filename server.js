@@ -6,9 +6,9 @@ const http = require('http');
 const bodyParser = require('body-parser');
 
 // Get our API routes
-const companyAPI = require('./server/routes/companyApi');
-const customerAPI = require('./server/routes/customerApi');
-const commentAPI = require('./server/routes/commentApi');
+const companiesAPI = require('./server/routes/companiesApi');
+const customersAPI = require('./server/routes/customersApi');
+const commentsAPI = require('./server/routes/commentsApi');
 
 const Sequelize = require('sequelize');
 const app = express();
@@ -17,16 +17,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist/project')));
 
 // Set our api routes
-app.use('/companyApi', companyAPI);
-app.use('/customerApi', customerAPI); // use enables the midddleware, which is customerAPI
-app.use('/commentApi', commentAPI);
+app.use('/companiesApi', companiesAPI);
+app.use('/customersApi', customersAPI); // use enables the midddleware, which is customerAPI
+app.use('/commentsApi', commentsAPI);
 
 // Catch all other routes and return the index file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+app.get('*', (req, res) => { 
+  console.log('yooooo')
+  res.sendFile(path.join(__dirname, 'dis/project/index.html'));
 });
 
 /**

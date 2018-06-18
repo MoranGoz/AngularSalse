@@ -2,7 +2,7 @@
  
  class DataAccess  {
     constructor() {
-        var connection = new Sequelize('angusalse', 'root', '1234', {
+        this.connection = new Sequelize('angusales', 'root', '1234', {
           host: 'localhost',
           dialect: 'mysql',
           
@@ -19,5 +19,5 @@
         
     }
 }
-const DA = new DataAccess ;
+const DA = new DataAccess() ;
 module.exports =   DA;

@@ -1,39 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const company = require('../DataAccess/company');
+const company = require('../DataAccess/companies');
 
-/* GET api listing. */
-router.get('/company', (req, res) => {
- res.send(JSON.stringify(DOGS));
+router.get('/', (req, res) => { 
+    company.getAll().then(data => {
+    res.send(JSON.stringify(data));
+    })
 });
 
-router.get('/edit-company/:id', (req, res) => {
-    var dogIndex = DOGS.findIndex((dog) => dog.id.toString() == req.params.id.toString());
-   console.log("dfhdfhf");
-   res.send(JSON.stringify(DOGS[dogIndex]));
-   });
-
-router.post('/add-company', (req, res) => {
-   var dog = req.body.dog;
-   dog.id = generateId();
-   DOGS.push(dog);
-   res.send(JSON.stringify(dog)); 
+router.post('/add', (req, res) => {
+  company.create(req.body).then(data => {
+    res.send(JSON.stringify(data));
+  })
 });
 
-router.put('/edit-company/:id', (req, res) => {
-    console.log("im on the server")
-   var dogIndex = DOGS.findIndex((dog) => dog.id.toString() == req.params.id.toString());
-   dogId = DOGS[dogIndex].id;
-   DOGS[dogIndex] = req.body.dog;
-   DOGS[dogIndex].id = dogId;
-   res.send(JSON.stringify(DOGS));
-});
+ router.put('/update/:id',(req,res)=>{
+    company.update(req.body,req.params.id).then(data => {
+        res.send(JSON.stringify(data));
+        })   
+ });
 
-router.delete('/delete-company/:id', (req, res) => {
-   var dogIndex = DOGS.findIndex((dog) => dog.id.toString() == req.params.id.toString());
-   DOGS.splice(dogIndex, 1);
-   res.status(200).send(DOGS);
+router.delete('/delete/:id', (req, res) => {
+    company.delete(req.params.id).then(data => {
+    res.send(JSON.stringify(data));
+    })
 });
-
 
 module.exports = router;
