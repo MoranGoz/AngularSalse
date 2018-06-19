@@ -1,0 +1,20 @@
+
+<div class="content-container">
+    <div class="form">
+        <mat-form-field>
+            <textarea matInput [(ngModel)]="company_id" placeholder="Company Id"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+              <textarea matInput [(ngModel)]="name" placeholder="Name"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+              <textarea matInput [(ngModel)]="adrress" placeholder="Adrress"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+              <textarea matInput [(ngModel)]="country" placeholder="Country"></textarea>
+          </mat-form-field>
+          
+          <!-- <div *ngIf="dogWeight < 10" class="validation-error">{{dogName}} is underweight</div>   -->
+          <button mat-button (click)="edit()" color="primary">edit</button>
+    </div>
+  

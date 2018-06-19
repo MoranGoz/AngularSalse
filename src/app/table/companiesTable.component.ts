@@ -14,7 +14,7 @@ import {MatTableDataSource} from '@angular/material';
 export class CompaniesTableComponent implements OnInit {
 
   companies :Array<Company> = new Array<Company>();
-  displayedColumns = ['company_id', 'name', 'adrress', 'country'];
+  displayedColumns = ['company_id', 'name', 'adrress', 'country','buttons'];
   dataSource = new MatTableDataSource(this.companies);
 
   constructor(private crmService : CrmService) { }
@@ -25,6 +25,16 @@ export class CompaniesTableComponent implements OnInit {
       console.log(data);
     });
     console.log('companies:' + this.companies);
+  }
+  onDelete(id){
+    console.log('Delete '+ id)
+    this.crmService.removeCompany(id);
+  }
+
+  onEdit(company,id){
+    console.log('Update '+ id)
+    this.crmService.editCompany(company,id);
+
   }
  
 }

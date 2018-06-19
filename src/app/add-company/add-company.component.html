@@ -1,3 +1,4 @@
+<!-- <div *ngIf="dogWeight < 10" class="validation-error">{{dogName}} is underweight</div> -->
 <div class="content-container">
   <div class="form">
       <mat-form-field>
@@ -13,6 +14,7 @@
             <textarea matInput [(ngModel)]="country" placeholder="Country"></textarea>
         </mat-form-field>
         
-        <!-- <div *ngIf="dogWeight < 10" class="validation-error">{{dogName}} is underweight</div>   -->
+        
         <button mat-button (click)="submit()" color="primary">Submit</button>
   </div>
+  

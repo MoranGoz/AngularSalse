@@ -31,24 +31,36 @@ export class CrmService {
     this.http.post<Company>('/companiesApi/add', newCompany).subscribe((data)=>{
       console.log('new'+ newCompany);
       console.log('data'+ data);
-      this.getCompanies();
+      this.companies.push(data);
+      this.companiesSubject.next(this.companies);
 
     });
   }
-}
-//   addDog(newDog: Dog) {
-//     this.http.post<Dog>('/api/dogs', { dog: newDog }).subscribe((dog)=>{
-//       this.dogs.push(dog);
-//       this.dogsSubject.next(this.dogs);
-      
-//     });
-//  }
-// updateDog(id: number, dog: Dog) {
-//   this.http.put<Array<Dog>>(`/api/dogs/${id}`, { dog: dog }).subscribe((dogs)=>{
-//   //var existingDogIndex = this.dogsUpdated.subscribe((dogs)=>{ 
-//     this.dogsSubject.next(dogs);
 
-//   });
+  editCompany(company:Company,id) {
+    this.http.put<Company>(`/companiesApi/update/`+ id, {company: company}).subscribe((company)=>{
+      console.log('Editing inside service '+id);
+      let index = this.companies.findIndex(id);
+      console.log(index);
+      this.companies[index]=company;
+      console.log('New values' + this.companies[index])
+      this.companiesSubject.next(this.companies);
+    });
+}
+
+  removeCompany(id) {
+    this.http.delete<Company>(`/companiesApi/delete/`+ id).subscribe((company)=>{
+      console.log('deleting inside service '+id);
+      let index = this.companies.findIndex(id);
+      console.log(index);
+      this.companies.splice(index,1);
+      console.log(this.companies[index])
+      this.companiesSubject.next(this.companies);
+  });
+  }
+}
+
+
 //   //DOGS[existingDogIndex] = dog;
 // }
 // removeDog(id) {
@@ -59,4 +71,3 @@ export class CrmService {
 
 //   });
 // }
-

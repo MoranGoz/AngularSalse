@@ -6,7 +6,7 @@ import { FilterComponent } from './filter/filter.component';
 import { HeaderComponent } from './header/header.component';
 import { CompaniesTableComponent } from './table/companiesTable.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DemoComponent } from './demo/demo.component';
+// import { DemoComponent } from './demo/demo.component';
 import { MatTableModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
@@ -15,14 +15,19 @@ import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { MatMenuModule} from '@angular/material/menu';
+import { EditCompanyComponent } from './edit-company/edit-company.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
     FilterComponent,
     HeaderComponent,
     CompaniesTableComponent,
-    DemoComponent,
+    //DemoComponent,
     AddCompanyComponent,
+    EditCompanyComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,8 @@ import { MatMenuModule} from '@angular/material/menu';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     MatMenuModule,
+    MatIconModule,
+    MatDialogModule
     
   ],
  
